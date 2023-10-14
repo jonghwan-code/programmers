@@ -1,13 +1,15 @@
 def solution(name, yearning, photo):
-    def some_fun(x):
+    def find_friend(x):
         t = set(x) & set(name)
         return list(t)
-    tmp = list(map(some_fun, photo))
+    friends_list = list(map(find_friend, photo))
     res = []
-    for x in tmp:
-        point = 0 
-        for i in range(len(x)):
-            idx = name.index(x[i])
-            point += yearning[idx]
-        res.append(point)
+    for friends in friends_list:
+        point = []
+        for friend in friends:
+            idx = name.index(friend)
+            point.append(yearning[idx])
+        res.append(sum(point))
     return res
+
+print(solution(["may", "kein", "kain", "radi"], [5, 10, 1, 3], [["may", "kein", "kain", "radi"],["may", "kein", "brin", "deny"], ["kon", "kain", "may", "coni"]]	))

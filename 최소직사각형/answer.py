@@ -3,9 +3,6 @@ def solution(sizes):
     for x in sizes:
         if x[1] > x[0]:
             x[0], x[1] = x[1], x[0]
-    for x in sizes:
-        if x[0] > bigX:
-            bigX = x[0]
-        if x[1] > bigY:
-            bigY = x[1]
+        bigX = max(x[0], bigX)
+        bigY = max(x[1], bigY)
     return bigX * bigY
