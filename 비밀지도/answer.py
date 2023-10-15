@@ -1,25 +1,23 @@
 def solution(n, arr1, arr2):
     def computeBinaryNum(num):
-      binaryNum = bin(num)[2:]
-      return int(binaryNum)
-    
-    def makeFiveLength(binarySum):
-        if len(binarySum) < n:
-          return '0' * (n-len(binarySum)) + binarySum
-        return binarySum
-    
+        binary_numbers = list(map(int, bin(num)[2:]))
+        if len(binary_numbers) < n:
+           return [0] * (n-len(binary_numbers)) + binary_numbers
+        return binary_numbers 
     toBinaryNumA = list(map(computeBinaryNum, arr1))
     toBinaryNumB = list(map(computeBinaryNum, arr2))
 
-    wallArr = [makeFiveLength(str(x + y)) for x, y in zip(toBinaryNumA, toBinaryNumB)]
-    res= []
+    wallArr = []
+    for x, y in zip(toBinaryNumA, toBinaryNumB):
+        tmp = []
+        for a, b in zip(x, y):
+          tmp.append(a+b)
+        wallArr.append(tmp)
+    
+    result = []
     for wall in wallArr:
-        number = wall
-        for code in wall:
-            if int(code) >= 1:
-                number = number.replace(code, '#')
-            else:
-                number = number.replace(code, ' ')
-        res.append(number)
-    return res         
-print(solution(5, [2, 20, 28, 18, 11], [1, 1, 21, 17, 28]))
+        wallStr = ''
+        for i in range(len(wall)):
+            wallStr += '#' if wall[i] else ' '
+        result.append(wallStr)
+    return result

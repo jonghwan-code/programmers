@@ -6,14 +6,14 @@ def solution(s):
     s = deque(s)
     while s:
         char = s.popleft()
-        if char.isdigit():
+        stringChr += char
+        if stringChr in ref:
+            result += str(ref.index(stringChr))
+            stringChr = ''
+        elif stringChr.isdigit():
             result += char
-        else:
-            stringChr += char
-            if stringChr in ref:
-                result += str(ref.index(stringChr))
-                stringChr = ''
-    return int(result)       
+            stringChr = ''
+    return int(result)
 # 다른 풀이
 '''
 def solution(s):
