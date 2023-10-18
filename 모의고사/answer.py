@@ -9,5 +9,4 @@ def solution(answers):
     thiP = test([3, 3, 1, 1, 2, 2, 4, 4, 5, 5], answers).count(True)
     student_grade = [(1, oneP), (2, twoP), (3, thiP)]
     mx = max([p for s, p in student_grade])
-    filtered = [(a, b) for a, b in student_grade if b == mx]
-    return list(map(lambda x: x[0], filtered))
+    return list(map(lambda x: x[0], [(a, b) for a, b in student_grade if b == mx]))
